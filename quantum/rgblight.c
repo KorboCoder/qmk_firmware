@@ -424,7 +424,27 @@ void rgblight_sethsv_eeprom_helper(uint16_t hue, uint8_t sat, uint8_t val, bool 
       LED_TYPE tmp_led;
       sethsv(hue, sat, val, &tmp_led);
       rgblight_setrgb(tmp_led.r, tmp_led.g, tmp_led.b);
-    } else {
+    } 
+    else if (rgblight_config.mode == 37){
+      if (rgblight_config.enable) {
+        uint8_t half = RGBLED_NUM/2;
+        val = rgblight_config.val;
+        for (uint8_t i = 0; i < RGBLED_NUM; i++) {
+          if(i < half){
+            sethsv(38, 128, val, (LED_TYPE *)&led[i]);
+            //rgblight_setrgb_at(255, 144, 0, i);
+          }  
+          else{
+            sethsv(200, 128, val, (LED_TYPE *)&led[i]);
+            //gblight_setrgb_at(96, 160, 255, i);
+          }
+          
+        }
+        rgblight_set();
+        rgblight_set();
+      }
+    }
+    else {
       // all LEDs in same color
       if (rgblight_config.mode >= 2 && rgblight_config.mode <= 5) {
         // breathing mode, ignore the change of val, use in memory value instead

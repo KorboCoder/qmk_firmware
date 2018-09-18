@@ -120,4 +120,6 @@
 #define rgblight_sethsv_magenta_at(at)     rgblight_sethsv_at (300, 255, 255, at)
 #define rgblight_sethsv_pink_at(at)        rgblight_sethsv_at (330, 128, 255, at)
 
+#define rgbset_splitcolors()
+
 #endif
